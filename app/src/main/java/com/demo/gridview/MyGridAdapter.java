@@ -1,9 +1,13 @@
 package com.demo.gridview;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
 
 /**
  * Created by 1027 on 2016-12-03.
@@ -26,27 +30,8 @@ public class MyGridAdapter extends BaseAdapter {
             R.drawable.mov17,
             R.drawable.mov18,
             R.drawable.mov19,
-            R.drawable.mov20,
-            R.drawable.mov21,
-            R.drawable.mov22,
-            R.drawable.mov23,
-            R.drawable.mov24,
-            R.drawable.mov25,
-            R.drawable.mov26,
-            R.drawable.mov27,
-            R.drawable.mov28,
-            R.drawable.mov29,
-            R.drawable.mov30,
-            R.drawable.mov31,
-            R.drawable.mov32,
-            R.drawable.mov33,
-            R.drawable.mov34,
-            R.drawable.mov35,
-            R.drawable.mov36,
-            R.drawable.mov37,
-            R.drawable.mov38,
-            R.drawable.mov39,
-            R.drawable.mov40
+            R.drawable.mov20
+
     };
     public MyGridAdapter(Context context) {
         this.context = context;
@@ -69,7 +54,31 @@ public class MyGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View v, ViewGroup g) {
-        
-        return null;
+        ImageView imageview = new ImageView(context);
+        imageview.setLayoutParams(new GridView.LayoutParams(350, 450));
+        imageview.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageview.setPadding(10, 10, 10, 10);
+
+        imageview.setImageResource(posters[i]);
+
+        final int pos = i;
+        imageview.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("event","click");
+                View dialog = View.inflate(context, R.layout.dialog,null);
+
+                AlertDialog.Builder ad = new AlertDialog.Builder(context);
+                ImageView iv = (ImageView) dialog.findViewById(R.id.iv_poster);
+                iv.setImageResource(posters[pos]);
+                ad.setTitle("MOVIE");
+                ad.setIcon(R.drawable.movie_icon);
+                ad.setView(dialog);
+                ad.setNegativeButton("CLOSE",null);
+                ad.show();
+
+            }
+        });
+
+        return imageview;
     }
 }

@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
         gv = (GridView) findViewById(R.id.gv);
 
-        //어떤 클래스로 기능을 추가할때는 항상 컨텍스트를 보내줘야한다.
+        //어떤 클래스로 기능을 추가 할때는 항상 컨텍스트를 보내줘야한다.
 
-        MyGridAdapter adapter = new MyGridAdapter(this.getApplicationContext());
+        MyGridAdapter adapter = new MyGridAdapter(this);
         gv.setAdapter(adapter);
     }
 }
